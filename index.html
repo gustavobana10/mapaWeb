@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="utf-8" />
@@ -40,13 +40,31 @@
     <div id="map"></div>
     <div id="instructions"></div>
     <script>
+        // Função para obter parâmetros da URL
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        // Obter os parâmetros de latitude e longitude da URL
+        const lat = parseFloat(getParameterByName('lat')) || -23.0000;
+        const long = parseFloat(getParameterByName('long')) || -53.00000;
+
+        console.log(lat);
+        console.log(long);
+
         mapboxgl.accessToken = 'pk.eyJ1IjoiZ3VzdGF2b2JhbmExMCIsImEiOiJjbHJ0Nm0yMjcwM2VkMmtxdjlkenVtYThzIn0.r_EWcQhhdjCgIrF4793FjA';
         const mapElement = document.getElementById('map'); // elemento HTML onde você está exibindo o mapa
 
         map = new mapboxgl.Map({
                     container: mapElement,
                     style: 'mapbox://styles/mapbox/streets-v12',
-                    center: [-53.00000, -23.0000],
+                    center: [long, lat],
                     zoom: 12
                 });
 
