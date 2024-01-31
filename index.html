@@ -38,7 +38,7 @@
 
 <body>
     <div id="map"></div>
-    <div id="instructions"></div>
+    <!-- <div id="instructions"></div> -->
     <script>
         // Função para obter parâmetros da URL
         function getParameterByName(name, url) {
@@ -67,18 +67,9 @@
             container: mapElement,
             style: 'mapbox://styles/mapbox/streets-v12',
             center: [long, lat],
-            zoom: 14
+            zoom: 8
         });
 
-
-        //   // set the bounds of the map
-        //   const bounds = [
-        //     [-123.069003, 45.395273],
-        //     [-122.303707, 45.612333]
-        //   ];
-        //   map.setMaxBounds(bounds);
-
-        // an arbitrary start will always be the same
         // only the end or destination will change
         const start = [long, lat];
         const end = [destinoLong, destinoLat];
@@ -196,55 +187,6 @@
                     'circle-color': '#f30'
                 }
             });
-
-            // allow the user to click the map to change the destination
-            // map.on('click', (event) => {
-            //     const coords = Object.keys(event.lngLat).map(
-            //         (key) => event.lngLat[key]
-            //     );
-            //     const end = {
-            //         'type': 'FeatureCollection',
-            //         'features': [
-            //             {
-            //                 'type': 'Feature',
-            //                 'properties': {},
-            //                 'geometry': {
-            //                     'type': 'Point',
-            //                     'coordinates': coords
-            //                 }
-            //             }
-            //         ]
-            //     };
-            //     if (map.getLayer('end')) {
-            //         map.getSource('end').setData(end);
-            //     } else {
-            //         map.addLayer({
-            //             'id': 'end',
-            //             'type': 'circle',
-            //             'source': {
-            //                 'type': 'geojson',
-            //                 'data': {
-            //                     'type': 'FeatureCollection',
-            //                     'features': [
-            //                         {
-            //                             'type': 'Feature',
-            //                             'properties': {},
-            //                             'geometry': {
-            //                                 'type': 'Point',
-            //                                 'coordinates': coords
-            //                             }
-            //                         }
-            //                     ]
-            //                 }
-            //             },
-            //             'paint': {
-            //                 'circle-radius': 10,
-            //                 'circle-color': '#f30'
-            //             }
-            //         });
-            //     }
-            //     getRoute(coords);
-            // });
         });
     </script>
 </body>
